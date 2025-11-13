@@ -36,7 +36,7 @@ export default function App() {
 		}
 	}
 
-	const [generatedNumbers, setGeneratedNumbers] = useState<diceObj[]>(generateAllNewDice());
+	const [generatedNumbers, setGeneratedNumbers] = useState<diceObj[]>(() => generateAllNewDice());
 	const randNums = generatedNumbers.map((currentDiceObj) => <Dice value={currentDiceObj.randomNumber} isOn={currentDiceObj.isHeld} id={currentDiceObj.id} hold={freezeValue} key={currentDiceObj.id} />);
 
 	const gameStatus: boolean = generatedNumbers.length > 0 && generatedNumbers.every((currentDiceObj) => currentDiceObj.isHeld === true && currentDiceObj.randomNumber === generatedNumbers[0].randomNumber);
