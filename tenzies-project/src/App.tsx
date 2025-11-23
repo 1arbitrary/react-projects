@@ -1,9 +1,22 @@
 import { useEffect, useRef, useState } from "react";
 import { useWindowSize } from 'react-use'
 import Confetti from 'react-confetti'
-import Header from "./Components/Header/Header";
 import Dice from "./Components/Dice/Dice";
 import "./App.css";
+
+export function Header() {
+	return (
+		<header>
+			<h1 className="main-heading">Tenzies</h1>
+			<div className="text-div">
+				<h3>
+					Roll until all the dices have the same value. Click
+					each dice to freeze at its current state.
+				</h3>
+			</div>
+		</header>
+	);
+}
 
 export default function App() {
 	const { width, height } = useWindowSize();
@@ -31,7 +44,7 @@ export default function App() {
 		} else {
 			setGeneratedNumbers(prev => {
 				return prev.map((currentDiceObj) => {
-					return (currentDiceObj.isHeld) ? { ...currentDiceObj } : { ...currentDiceObj, randomNumber: Math.floor(Math.random() * 6 + 1) };
+					return (currentDiceObj.isHeld) ? currentDiceObj : { ...currentDiceObj, randomNumber: Math.floor(Math.random() * 6 + 1) };
 				});
 			});
 		}
