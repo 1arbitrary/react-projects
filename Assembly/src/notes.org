@@ -1,0 +1,12 @@
+# PROJECT PLANNING
+
+- How to plan a project ?
+  - What are the main containers of elements I need in this app?
+    - Languages, keyboard, input box and maybe a header component but the logic is too small.
+
+  - What values need to be saved in state and what values need to be derived from the state ?
+    - I think we would have to save the input into the state and we can derive the value of the guessed word from the state i guess?
+
+  - How will the user interact with the app ? What events do i need to handle?
+    - So the user would try to guess the word and give input based on that, i also
+      want the functionality to make the user give input using the keyboard by typing.
