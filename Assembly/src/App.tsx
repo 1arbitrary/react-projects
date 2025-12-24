@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import { languages } from './languages';
 import './App.css';
 
 function Header() {
@@ -24,16 +26,82 @@ function Status() {
   );
 }
 
-function Languages() {
-  return <h1 style={{ color: 'white' }}>Languages go here !!!!!!!!!!!</h1>;
+function LanguageSection({
+  name,
+  bgColor,
+  textColor,
+}: {
+  name: string;
+  bgColor: string;
+  textColor: string;
+}) {
+  const styles: React.CSSProperties = {
+    color: textColor,
+    fontWeight: 500,
+    textAlign: 'center',
+    backgroundColor: bgColor,
+  };
+  return (
+    <div className="lang-div" style={styles}>
+      <p>{name}</p>
+    </div>
+  );
 }
 
-export default function App() {
+function Keyboard() {
+  let alphaArr: string[] = [];
+  for (let i: number = 65; i <= 90; i++) {
+    alphaArr.push(String.fromCharCode(i));
+  }
+
+  const mappedAlphaArr = alphaArr.map((alphabet, idx) => (
+    <button key={idx} className="keyboard-button">
+      {alphabet}
+    </button>
+  ));
+  return <div className="keyboard-div">{mappedAlphaArr}</div>;
+}
+
+export default function AssemblyEndGame() {
+  const [currentWord] = useState<string>('React');
+  const mappedArr = currentWord.split('').map((letter, idx) => (
+    <span key={idx} className="span-input">
+      {letter.toUpperCase()}
+    </span>
+  ));
+
+  const langArr = languages.map((lang, idx) => (
+    <LanguageSection
+      name={lang.name}
+      bgColor={lang.backgroundColor}
+      textColor={lang.textColor}
+      key={idx}
+    />
+  ));
+
   return (
     <>
       <Header />
       <Status />
-      <Languages />
+
+      <div className="main-languages-div">
+        <div className="inner-main-lang-div">{langArr}</div>
+      </div>
+
+      <div className="input-div">
+        <p className="input-text">{mappedArr}</p>
+      </div>
+
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <Keyboard />
+      </div>
+      
     </>
   );
 }
