@@ -1,5 +1,5 @@
 # Assembly: Endgame
-<img src="./dist/favicon.jpg"></img>
+(<img src="./public/favicon.png"></img>)
 ## Setup
 
 Install the dependencies:
